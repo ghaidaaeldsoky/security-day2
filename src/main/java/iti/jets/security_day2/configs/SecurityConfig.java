@@ -3,6 +3,7 @@ package iti.jets.security_day2.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -15,6 +16,7 @@ import iti.jets.security_day2.security.UserDetailsServiceImpl;
 import jakarta.servlet.Filter;
 
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
@@ -34,10 +36,14 @@ public class SecurityConfig {
 
         http.addFilterBefore(customFilter(), UsernamePasswordAuthenticationFilter.class);
 
+        // http.authorizeHttpRequests(auth -> auth
+        // .requestMatchers("/admin/**").hasRole("ADMIN")
+        // .requestMatchers("/home").authenticated()
+        // .anyRequest().denyAll());
+
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/home").authenticated()
-                .anyRequest().denyAll());
+                .anyRequest().permitAll());
+
         return http.build();
 
     }
