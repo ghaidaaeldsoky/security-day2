@@ -34,7 +34,10 @@ public class SecurityConfig {
 
         http.addFilterBefore(customFilter(), UsernamePasswordAuthenticationFilter.class);
 
-        http.authorizeHttpRequests( c-> c.anyRequest().authenticated() );
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/home").authenticated()
+                .anyRequest().denyAll());
         return http.build();
 
     }

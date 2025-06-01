@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "users")
 public class UserEntity {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,6 +19,9 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String role;
+
     // Constructors
     public UserEntity() {
     }
@@ -28,6 +31,13 @@ public class UserEntity {
         this.gmail = gmail;
         this.password = password;
     }
+
+    public UserEntity(String username, String gmail, String password, String role) {
+    this.username = username;
+    this.gmail = gmail;
+    this.password = password;
+    this.role = role;
+}
 
     // Getters and Setters
     public Long getId() {
@@ -60,6 +70,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+    public void setRole(String role) {
+        this.role = role;
     }
 
 

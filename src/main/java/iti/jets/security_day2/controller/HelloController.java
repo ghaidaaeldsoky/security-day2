@@ -15,5 +15,9 @@ public class HelloController {
         return new String("Home Page");
     }
     
+    @GetMapping("/admin/home")
+    public String adminPanel() {
+        return "Welcome Admin Home !";
+    }
     
 }
