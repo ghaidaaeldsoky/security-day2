@@ -15,8 +15,8 @@ import iti.jets.security_day2.security.MyCustomFilter;
 import iti.jets.security_day2.security.UserDetailsServiceImpl;
 import jakarta.servlet.Filter;
 
-@Configuration
-@EnableMethodSecurity
+// @Configuration
+// @EnableMethodSecurity
 public class SecurityConfig {
 
     @Bean
